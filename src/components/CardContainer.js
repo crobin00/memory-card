@@ -3,7 +3,7 @@ import classes from '../styles/CardContainer.module.css';
 import { useState } from 'react';
 
 const CardContainer = () => {
-  const [selected, setSelected] = useState([
+  const [cardArray, setCardArray] = useState([
     {
       title: 'Card 1',
       selected: false,
@@ -16,16 +16,42 @@ const CardContainer = () => {
     },
   ]);
 
-  const selectedCard = (id) => {
-    console.log('selected', id);
+  //Will set selected value to true. If already true, end game
+  const clickedCard = (id) => {
+    console.log(id);
+    cardArray.forEach((card) => {
+      if (card.id === id) {
+        if (card.selected) {
+          console.log('game over');
+        }
+        card.selected = true;
+        randomlySort();
+        console.log('called');
+      }
+    });
+  };
+
+  //Randomly positions cards
+  const randomlySort = () => {
+    let newArray = cardArray
+      .sort(() => Math.random() - 0.5)
+      .map((card) => {
+        return {
+          title: card.title,
+          selected: card.selected,
+          id: card.id,
+        };
+      });
+    setCardArray(newArray);
+    console.log(cardArray);
   };
 
   return (
     <div className={classes.container}>
-      {selected.map((currentCard) => {
+      {cardArray.map((currentCard) => {
         return (
           <Card
-            selectedCard={selectedCard}
+            clickedCard={clickedCard}
             card={currentCard}
             key={currentCard.id}
           />
