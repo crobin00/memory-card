@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import classes from '../styles/CardContainer.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CardContainer = () => {
   const [cardArray, setCardArray] = useState([
@@ -14,21 +14,34 @@ const CardContainer = () => {
       selected: false,
       id: 2,
     },
+    {
+      title: 'Card 3',
+      selected: false,
+      id: 3,
+    },
+    {
+      title: 'Card 4',
+      selected: false,
+      id: 4,
+    },
   ]);
+
+  useEffect(() => {
+    console.log('changed effect');
+  }, [cardArray]);
 
   //Will set selected value to true. If already true, end game
   const clickedCard = (id) => {
-    console.log(id);
     cardArray.forEach((card) => {
       if (card.id === id) {
         if (card.selected) {
-          console.log('game over');
+          gameOver();
+        } else {
+          card.selected = true;
         }
-        card.selected = true;
-        randomlySort();
-        console.log('called');
       }
     });
+    randomlySort();
   };
 
   //Randomly positions cards
@@ -43,6 +56,13 @@ const CardContainer = () => {
         };
       });
     setCardArray(newArray);
+  };
+
+  const gameOver = () => {
+    alert('game over');
+    cardArray.forEach((card) => {
+      card.selected = false;
+    });
     console.log(cardArray);
   };
 
