@@ -2,7 +2,7 @@ import Card from './Card.js';
 import classes from '../styles/CardContainer.module.css';
 import { useState, useEffect } from 'react';
 
-const CardContainer = () => {
+const CardContainer = (props) => {
   const [cardArray, setCardArray] = useState([
     {
       title: 'Card 1',
@@ -38,6 +38,7 @@ const CardContainer = () => {
           gameOver();
         } else {
           card.selected = true;
+          props.setScore(props.score + 1);
         }
       }
     });
@@ -63,6 +64,12 @@ const CardContainer = () => {
     cardArray.forEach((card) => {
       card.selected = false;
     });
+
+    if (props.score > props.highScore) {
+      props.setHighScore(props.score);
+    }
+
+    props.setScore(0);
     console.log(cardArray);
   };
 
