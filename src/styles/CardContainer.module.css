@@ -1,3 +1,5 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  font-size: 1.3vw;
 }

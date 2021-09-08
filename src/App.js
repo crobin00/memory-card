@@ -1,4 +1,5 @@
 import CardContainer from './components/CardContainer.js';
+import Scoreboard from './components/Scoreboard.js';
 import { useState } from 'react';
 
 function App() {
@@ -7,9 +8,8 @@ function App() {
 
   return (
     <div>
-      <h1>Memory Card</h1>
-      <span>{score}</span>
-      <span>{highScore}</span>
+      <h1 style={{ textAlign: 'center' }}>Album Memory Game</h1>
+      <Scoreboard score={score} highScore={highScore} />
       <CardContainer
         score={score}
         setScore={setScore}

@@ -1,36 +1,12 @@
 import Card from './Card.js';
 import classes from '../styles/CardContainer.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { albumList } from '../albums.js';
 
 const CardContainer = (props) => {
-  const [cardArray, setCardArray] = useState([
-    {
-      title: 'Card 1',
-      selected: false,
-      id: 1,
-    },
-    {
-      title: 'Card 2',
-      selected: false,
-      id: 2,
-    },
-    {
-      title: 'Card 3',
-      selected: false,
-      id: 3,
-    },
-    {
-      title: 'Card 4',
-      selected: false,
-      id: 4,
-    },
-  ]);
+  const [cardArray, setCardArray] = useState(albumList);
 
-  useEffect(() => {
-    console.log('changed effect');
-  }, [cardArray]);
-
-  //Will set selected value to true. If already true, end game
+  //Will set clicked selected value to true. If already true, end game
   const clickedCard = (id) => {
     cardArray.forEach((card) => {
       if (card.id === id) {
@@ -45,13 +21,14 @@ const CardContainer = (props) => {
     randomlySort();
   };
 
-  //Randomly positions cards
+  //Randomly positions cards on page
   const randomlySort = () => {
     let newArray = cardArray
       .sort(() => Math.random() - 0.5)
       .map((card) => {
         return {
           title: card.title,
+          src: card.src,
           selected: card.selected,
           id: card.id,
         };
@@ -60,7 +37,6 @@ const CardContainer = (props) => {
   };
 
   const gameOver = () => {
-    alert('game over');
     cardArray.forEach((card) => {
       card.selected = false;
     });
@@ -70,7 +46,6 @@ const CardContainer = (props) => {
     }
 
     props.setScore(0);
-    console.log(cardArray);
   };
 
   return (

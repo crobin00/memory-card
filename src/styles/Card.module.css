@@ -1,4 +1,14 @@
 .card {
   background: lavender;
   margin: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  object-fit: contain;
+  width: 98%;
 }

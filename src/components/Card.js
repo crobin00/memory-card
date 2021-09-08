@@ -7,7 +7,7 @@ const Card = (props) => {
       onClick={() => props.clickedCard(props.card.id)}
     >
       <h3>{props.card.title}</h3>
-      <h5>Picture Here</h5>
+      <img src={props.card.src} alt="album art" />
     </div>
   );
 };
