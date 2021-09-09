@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  color: rgb(238, 224, 224);
 }
 
 .container > div {

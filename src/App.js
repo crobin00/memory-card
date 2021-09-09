@@ -8,7 +8,9 @@ function App() {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Album Memory Game</h1>
+      <h1 style={{ textAlign: 'center', color: 'rgb(238, 224, 224)' }}>
+        Album Memory Game
+      </h1>
       <Scoreboard score={score} highScore={highScore} />
       <CardContainer
         score={score}

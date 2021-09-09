@@ -1,14 +1,23 @@
 .card {
-  background: lavender;
+  background: rgb(238, 224, 224);
   margin: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Arial';
+}
+
+.card h3 {
+  line-height: 0px;
 }
 
 img {
   object-fit: contain;
   width: 98%;
+  border-radius: 5px;
+  margin: 3px;
 }
