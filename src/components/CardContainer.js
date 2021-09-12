@@ -6,15 +6,23 @@ import { albumList } from '../albums.js';
 const CardContainer = (props) => {
   const [cardArray, setCardArray] = useState(albumList);
 
-  //Will set clicked selected value to true. If already true, end game
+  //Will set clicked selected value to true. If already true, end game.
+  //If all cards click, set high score to 12.
   const clickedCard = (id) => {
     cardArray.forEach((card) => {
       if (card.id === id) {
         if (card.selected) {
+          if (props.score > props.highScore) {
+            props.setHighScore(props.score);
+          }
           gameOver();
-        } else {
+        } else if (props.score < 11) {
           card.selected = true;
           props.setScore(props.score + 1);
+        } else {
+          props.setScore(props.score + 1);
+          props.setHighScore(12);
+          gameOver();
         }
       }
     });
@@ -40,10 +48,6 @@ const CardContainer = (props) => {
     cardArray.forEach((card) => {
       card.selected = false;
     });
-
-    if (props.score > props.highScore) {
-      props.setHighScore(props.score);
-    }
 
     props.setModalIsOpen(true);
   };

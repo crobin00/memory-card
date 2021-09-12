@@ -28,9 +28,16 @@ function App() {
         setModalIsOpen={setModalIsOpen}
       />
 
-      {/* Modal and Backdrop on Gameover */}
-      {modalIsOpen ? <Modal score={score} closeModal={closeModal} /> : null}
+      {/* Modal on gameover loss */}
+      {modalIsOpen && score !== 12 ? (
+        <Modal score={score} closeModal={closeModal} text={'Game Over'} />
+      ) : null}
       {modalIsOpen ? <Backdrop closeModal={closeModal} /> : null}
+
+      {/* Modal on gameover win */}
+      {modalIsOpen && score === 12 ? (
+        <Modal score={score} closeModal={closeModal} text={'You win!'} />
+      ) : null}
     </div>
   );
 }
