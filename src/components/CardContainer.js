@@ -45,7 +45,7 @@ const CardContainer = (props) => {
       props.setHighScore(props.score);
     }
 
-    props.setScore(0);
+    props.setModalIsOpen(true);
   };
 
   return (

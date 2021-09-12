@@ -1,10 +1,18 @@
 import CardContainer from './components/CardContainer.js';
 import Scoreboard from './components/Scoreboard.js';
+import Modal from './components/Modal.js';
+import Backdrop from './components/Backdrop.js';
 import { useState } from 'react';
 
 function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setScore(0);
+    setModalIsOpen(false);
+  };
 
   return (
     <div>
@@ -17,7 +25,12 @@ function App() {
         setScore={setScore}
         highScore={highScore}
         setHighScore={setHighScore}
+        setModalIsOpen={setModalIsOpen}
       />
+
+      {/* Modal and Backdrop on Gameover */}
+      {modalIsOpen ? <Modal score={score} closeModal={closeModal} /> : null}
+      {modalIsOpen ? <Backdrop closeModal={closeModal} /> : null}
     </div>
   );
 }
